@@ -2,7 +2,7 @@ import { makeVerifyRequest } from '$lib/requests';
 import { redirect } from '@sveltejs/kit';
 import { decode } from 'jsonwebtoken';
 
-export const handle = async ({ event, request, resolve }) => {
+export const handle = async ({ event, resolve }) => {
 	const protectedRoutes = ['/files'];
 
 	console.log('run handle', event.url.pathname);
@@ -17,6 +17,7 @@ export const handle = async ({ event, request, resolve }) => {
 
 	const verifyResponse = await makeVerifyRequest(new URLSearchParams({ token: token ?? '' }));
 
+	console.log('verify response', verifyResponse);
 	if (verifyResponse.valid) {
 		event.locals.user = {
 			isAuthenticated: true,
@@ -25,7 +26,7 @@ export const handle = async ({ event, request, resolve }) => {
 		};
 	} else {
 		if (protectedRoutes.includes(event.url.pathname)) {
-			throw redirect(303, '/');
+			throw redirect(303, '/login');
 		}
 	}
 

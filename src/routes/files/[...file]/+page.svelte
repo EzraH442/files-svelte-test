@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Explorer from '$lib/components/explorer.svelte';
-	import type { PageData } from './$types.js';
 
-	export let data: PageData;
+	export let data;
+	console.log(data);
 </script>
 
 <div>

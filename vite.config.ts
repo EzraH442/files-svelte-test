@@ -4,5 +4,8 @@ import mkcert from 'vite-plugin-mkcert';
 
 export default defineConfig({
 	server: { https: true },
-	plugins: [sveltekit(), mkcert()]
+	plugins: [sveltekit(), mkcert()],
+	ssr: {
+		noExternal: ['svelte-hero-icons']
+	}
 });
