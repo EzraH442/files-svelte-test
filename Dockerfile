@@ -16,7 +16,7 @@ RUN npm install
 COPY ./ ./
 
 RUN 
-RUN npm run PROTOCOL_HEADER=x-forwarded-proto HOST_HEADER=x-forwarded-host build
+RUN npm run build
 EXPOSE 3000
 
 CMD [ "pm2-runtime", "build" ]

@@ -6,6 +6,7 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 	const url = `${gatewayUrl}/list?${urlparams}`;
 
 	console.log(url);
+	console.log('cookie is', cookies.get('session_id'));
 
 	const res = await fetch(url, {
 		headers: {
