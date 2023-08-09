@@ -1,23 +1,6 @@
 <script lang="ts">
 	import Input from '$lib/components/Input.svelte';
-	import { onMount } from 'svelte';
 	import { PUBLIC_hcaptchaSitekey } from '$env/static/public';
-
-	const onSubmit = (token: string) => {
-		console.log(token);
-		console.log('test');
-		// redirect(300, '/home');
-	};
-
-	onMount(() => {
-		// @ts-ignore
-		window.onSubmit = onSubmit;
-
-		return () => {
-			// @ts-ignore
-			window.onSubmit = null;
-		};
-	});
 </script>
 
 <svelte:head>

@@ -1,20 +1,19 @@
 import { gatewayUrl } from '$env/static/private';
+import type { mFile } from '../../../stores';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 	const urlparams = new URLSearchParams({ prefix: `${params.file}/` ?? '', delimiter: '/' });
 	const url = `${gatewayUrl}/list?${urlparams}`;
-
-	console.log(url);
-	console.log('cookie is', cookies.get('session_id'));
-
 	const res = await fetch(url, {
 		headers: {
 			Authorization: `Bearer ${cookies.get('session_id')}`
 		}
 	});
 	const data = await res.json();
-	console.log(JSON.stringify(data).toString().substring(0, 500));
+	const files = data.files as mFile[];
 
-	return { data };
+	const token = cookies.get('session_id') ?? '';
+
+	return { data: { files, token } };
 };

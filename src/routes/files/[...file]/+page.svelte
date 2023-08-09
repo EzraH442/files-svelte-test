@@ -1,12 +1,18 @@
 <script lang="ts">
+	import Displayer from '$lib/components/displayer.svelte';
 	import Explorer from '$lib/components/explorer.svelte';
 
 	export let data;
-	console.log(data);
 </script>
 
 <div>
-	<h1>files</h1>
+	<div class="flex overflow-x-scroll mx-6">
+		<div class="min-w-72 shrink-0 mx-4">
+			<Explorer files={data.data.files} />
+		</div>
 
-	<Explorer files={data.data.files} />
+		<div class="grow border-2 border-black rounded-md">
+			<Displayer files={data.data.files} token={data.data.token} />
+		</div>
+	</div>
 </div>

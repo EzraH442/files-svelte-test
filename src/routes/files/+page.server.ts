@@ -5,8 +5,6 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
 	const urlparams = new URLSearchParams({ prefix: '', delimiter: '/' });
 	const url = `${gatewayUrl}/list?${urlparams}`;
 
-	console.log(url);
-
 	const res = await fetch(url, {
 		headers: {
 			Authorization: `Bearer ${cookies.get('session_id')}`

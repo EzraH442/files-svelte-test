@@ -5,7 +5,7 @@
 	export let files: mFile[];
 </script>
 
-<div class="ml-4">
+<div>
 	<ul>
 		{#each files as file}
 			<li>

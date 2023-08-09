@@ -5,19 +5,14 @@ import { decode } from 'jsonwebtoken';
 export const handle = async ({ event, resolve }) => {
 	const protectedRoutes = ['/files'];
 
-	console.log('run handle', event.url.pathname);
 	const token = event.cookies.get('session_id');
-	console.log('session token is', token);
 
-	console.log('protected?', protectedRoutes.includes(event.url.pathname));
 	if (protectedRoutes.includes(event.url.pathname) && !token) {
-		console.log('misisng token');
 		throw redirect(303, '/');
 	}
 
 	const verifyResponse = await makeVerifyRequest(new URLSearchParams({ token: token ?? '' }));
 
-	console.log('verify response', verifyResponse);
 	if (verifyResponse.valid) {
 		event.locals.user = {
 			isAuthenticated: true,
