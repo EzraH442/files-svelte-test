@@ -7,12 +7,12 @@
 </script>
 
 <div class="w-full">
-	<div class="w-full h-screen overflow-x-scroll flex flex-wrap p-8">
+	<div class="lg:w-full w-96 h-screen overflow-x-scroll flex flex-wrap p-8 content-start">
 		{#each files as file}
 			{#if file.id != null}
-				<div class="tooltip tooltip-info" data-tip={file.name}>
+				<div class="tooltip tooltip-info shrink-0" data-tip={file.path}>
 					<Media
-						src={`https://static.ezrahuang.com/file/ezrah442-testing/${file.name}`}
+						src={`https://static.ezrahuang.com/file/ezrah442-testing/${file.path}`}
 						class="h-32 w-auto m-1"
 						{token}
 					/>

@@ -8,5 +8,5 @@
 <div>
 	<h1>files</h1>
 
-	<Explorer files={data.data.files} />
+	<Explorer files={data.data} />
 </div>

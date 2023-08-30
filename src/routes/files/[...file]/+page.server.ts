@@ -1,4 +1,5 @@
 import { gatewayUrl } from '$env/static/private';
+import { extractFileName, extractFolderName } from '$lib/util';
 import type { mFile } from '../../../stores';
 import type { PageServerLoad } from './$types';
 
@@ -10,8 +11,16 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 			Authorization: `Bearer ${cookies.get('session_id')}`
 		}
 	});
-	const data = await res.json();
-	const files = data.files as mFile[];
+	const resData = await res.json();
+
+	const files = resData.files.map((f: { id: string; name: string }) => {
+		const file: mFile = {
+			id: f.id,
+			path: f.name,
+			name: f.id ? extractFileName(f.name) : extractFolderName(f.name)
+		};
+		return file;
+	});
 
 	const token = cookies.get('session_id') ?? '';
 

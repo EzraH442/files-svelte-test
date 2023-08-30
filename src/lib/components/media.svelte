@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { isImage, isVideo } from '$lib/util';
+	import { DocumentMagnifyingGlass, Icon } from 'svelte-hero-icons';
 
 	export let src: string;
 	export let token: string;
@@ -11,5 +12,7 @@
 	<!-- svelte-ignore a11y-media-has-caption -->
 	<video src={`${src}?token=${token}`} class={$$restProps.class} />
 {:else}
-	<img alt={src} src="" />
+	<div class={$$restProps.class}>
+		<Icon src={DocumentMagnifyingGlass} />
+	</div>
 {/if}
