@@ -7,11 +7,11 @@
 
 <div>
 	<div class="flex overflow-x-scroll mx-6">
-		<div class="min-w-72 shrink-0 mx-4">
+		<div class="shrink-0 mx-4">
 			<Explorer files={data.data.files} />
 		</div>
 
-		<div class="grow border-2 border-black rounded-md">
+		<div class="shrink-0 max-w-screen-xl grow border border-black rounded-sm">
 			<Displayer files={data.data.files} token={data.data.token} />
 		</div>
 	</div>

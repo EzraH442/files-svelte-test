@@ -14,6 +14,11 @@ export const load: PageServerLoad = async ({ fetch, cookies }) => {
 	});
 	const resData = await res.json();
 
+	if (resData.status == 401) {
+		console.log(resData);
+		return { data: [] };
+	}
+
 	const data = resData.files.map((f: { id: string; name: string }) => {
 		const file: mFile = {
 			id: f.id,
