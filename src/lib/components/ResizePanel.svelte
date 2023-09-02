@@ -21,7 +21,6 @@
 	}
 
 	function expand(event: MouseEvent) {
-		console.log(expanding, start, initialWidth);
 		if (!expanding || !start || !initialWidth) return;
 
 		const delta = event.pageX - start;
@@ -42,7 +41,7 @@
 	<svg
 		height="100%"
 		width={grabberWidth + 20}
-		class="absolute h-full z-20 top-0"
+		class="absolute h-full z-10 top-0"
 		style={`margin-left: ${width - grabberWidth}px`}
 	>
 		<rect

@@ -6,12 +6,12 @@
 </script>
 
 <div>
-	<div class="flex overflow-x-scroll mx-6">
-		<div class="shrink-0 mx-4">
+	<div class="flex overflow-x-scroll space-x-1">
+		<div class="shrink-0">
 			<Explorer files={data.data.files} />
 		</div>
 
-		<div class="shrink-0 max-w-screen-xl grow border border-black rounded-sm">
+		<div class="shrink-0 max-w-[95vw] grow border border-black rounded-sm">
 			<Displayer files={data.data.files} token={data.data.token} />
 		</div>
 	</div>
