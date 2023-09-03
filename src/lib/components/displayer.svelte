@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Icon, XCircle } from 'svelte-hero-icons';
 	import type { mFile } from '../../stores';
 	import Media from './media.svelte';
+	import { extractFileName } from '$lib/util';
 
 	export let files: mFile[];
 	export let token: string;
@@ -12,6 +12,7 @@
 	export let onImageClick = (src: string) => {
 		fullscreenOpen = true;
 		currentFullscreenFileSrc = src;
+		image_modal.showModal();
 	};
 
 	export let onImageClose = () => {
@@ -43,19 +44,17 @@
 			</div>
 		{/if}
 	{/each}
-	<div hidden={!fullscreenOpen} class="absolute top-0 left-0 w-full bg-gray-600 bg-opacity-90 z-50">
-		{#if currentFullscreenFileSrc != ''}
-			<div class="m-4 text-white">
-				<div class="flex items-center">
-					<span class="underline">{currentFullscreenFileSrc}</span>
-					<button on:click={onImageClose} class="ml-auto">
-						<Icon src={XCircle} class="w-8 font-thin" />
-					</button>
-				</div>
+	<dialog class="modal" id="image_modal">
+		<form class="modal-box">
+			{#if currentFullscreenFileSrc != ''}
+				<span class="mb-4">{extractFileName(currentFullscreenFileSrc)}</span>
 				<Media src={currentFullscreenFileSrc} class="h-auto w-full m-1" {token} />
-			</div>
-		{/if}
-	</div>
+			{/if}
+		</form>
+		<form method="dialog" class="modal-backdrop">
+			<button>close</button>
+		</form>
+	</dialog>
 </div>
 
 <style>
