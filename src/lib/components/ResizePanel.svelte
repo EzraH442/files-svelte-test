@@ -32,9 +32,9 @@
 	}
 </script>
 
-<svelte:window on:mouseup={stopExpand} />
+<svelte:window on:mouseup={stopExpand} on:mousemove={expand} />
 
-<div class="relative" on:mousemove={expand}>
+<div class="relative">
 	<div style={`width: ${width}px`} class="h-full px-2 py-3 bg-zinc-200">
 		<slot />
 	</div>
@@ -51,6 +51,7 @@
 			class="grip"
 			on:mousedown={(e) => startExpand(e)}
 			class:active={expanding}
+			role="none"
 		/>
 	</svg>
 </div>

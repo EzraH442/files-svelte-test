@@ -20,6 +20,7 @@ export const handle = async ({ event, resolve }) => {
 			email: decode(token!)?.email ?? ''
 		};
 	} else {
+		event.cookies.delete('session_id', { path: '/' });
 		if (protectedRoutes.includes(event.url.pathname)) {
 			throw redirect(303, '/login');
 		}

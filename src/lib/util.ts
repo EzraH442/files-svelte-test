@@ -16,3 +16,20 @@ export const extractFolderName = (path: string) => {
 export const extractFileName = (path: string) => {
 	return path.substring(path.lastIndexOf('/') + 1);
 };
+
+export const toFolders = (path: string) => {
+	const ret: { folder: string; href: string }[] = [{ folder: 'Home', href: '' }];
+	let current = '';
+	const paths = path.split('/');
+
+	paths.forEach((p) => {
+		current += p;
+		ret.push({
+			folder: p,
+			href: current
+		});
+		current += '/';
+	});
+
+	return ret;
+};

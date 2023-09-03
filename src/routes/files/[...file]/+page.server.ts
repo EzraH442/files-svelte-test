@@ -24,5 +24,5 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 
 	const token = cookies.get('session_id') ?? '';
 
-	return { data: { files, token } };
+	return { data: { files, token, path: params.file } };
 };
