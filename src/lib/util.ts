@@ -1,8 +1,13 @@
 const imageRegex = /\.(JPEG|PNG|JPG|GIF)$/i;
 const videoRegex = /\.(MOV|MPV|MP4)$/i;
+const heicRegex = /\.(HEIC)$/i;
 
 export const isImage = (fileName: string) => {
 	return imageRegex.test(fileName);
+};
+
+export const isHEIC = (fileName: string) => {
+	return heicRegex.test(fileName);
 };
 
 export const isVideo = (fileName: string) => {

@@ -26,3 +26,5 @@ export const load: PageServerLoad = async ({ fetch, cookies, params }) => {
 
 	return { data: { files, token, path: params.file } };
 };
+
+export const ssr = false;

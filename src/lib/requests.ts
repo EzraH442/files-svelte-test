@@ -7,17 +7,15 @@ interface JWTResponse {
 }
 
 const makeLoginRequest = async (body: URLSearchParams) => {
-	const loginResponse: JWTResponse = await fetch(`${authUrl}/auth`, {
-		mode: 'cors',
+	const loginResponse = await fetch(`${authUrl}/auth`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		},
-
 		body
 	}).then((res) => res.json());
 
-	return loginResponse;
+	return loginResponse as JWTResponse;
 };
 
 interface VerifyResponse {
@@ -26,16 +24,14 @@ interface VerifyResponse {
 }
 
 const makeVerifyRequest = async (body: URLSearchParams) => {
-	const verifyResponse: VerifyResponse = await fetch(`${authUrl}/verify`, {
-		mode: 'cors',
+	const verifyResponse = await fetch(`${authUrl}/verify`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		},
-
 		body
 	}).then((res) => res.json());
 
-	return verifyResponse;
+	return verifyResponse as VerifyResponse;
 };
 export { makeLoginRequest, makeVerifyRequest };

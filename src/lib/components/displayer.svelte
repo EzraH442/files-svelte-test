@@ -6,18 +6,11 @@
 	export let files: mFile[];
 	export let token: string;
 
-	export let fullscreenOpen = false;
 	export let currentFullscreenFileSrc = '';
 
 	export let onImageClick = (src: string) => {
-		fullscreenOpen = true;
 		currentFullscreenFileSrc = src;
 		image_modal.showModal();
-	};
-
-	export let onImageClose = () => {
-		fullscreenOpen = false;
-		currentFullscreenFileSrc = '';
 	};
 </script>
 
@@ -25,12 +18,14 @@
 	{#each files as file}
 		{#if file.id != null}
 			<div class="tooltip">
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<div
 					class="z-50"
 					on:click={() =>
 						onImageClick(`https://static.ezrahuang.com/file/ezrah442-testing/${file.path}`)}
+					on:keyup={() =>
+						onImageClick(`https://static.ezrahuang.com/file/ezrah442-testing/${file.path}`)}
+					role="button"
+					tabindex={0}
 				>
 					<Media
 						src={`https://static.ezrahuang.com/file/ezrah442-testing/${file.path}`}

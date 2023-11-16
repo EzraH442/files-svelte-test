@@ -3,26 +3,25 @@ import { redirect } from '@sveltejs/kit';
 import { decode } from 'jsonwebtoken';
 
 export const handle = async ({ event, resolve }) => {
-	const protectedRoutes = ['/files'];
-
 	const token = event.cookies.get('session_id');
 
-	if (protectedRoutes.includes(event.url.pathname) && !token) {
-		throw redirect(303, '/');
-	}
-
-	const verifyResponse = await makeVerifyRequest(new URLSearchParams({ token: token ?? '' }));
-
-	if (verifyResponse.valid) {
-		event.locals.user = {
-			isAuthenticated: true,
-			// @ts-ignore
-			email: decode(token!)?.email ?? ''
-		};
-	} else {
-		event.cookies.delete('session_id', { path: '/' });
-		if (protectedRoutes.includes(event.url.pathname)) {
+	if (event.url.pathname.startsWith('/files')) {
+		if (!token) {
 			throw redirect(303, '/login');
+		} else {
+			const verifyResponse = await makeVerifyRequest(new URLSearchParams({ token }));
+
+			console.log(verifyResponse);
+			if (verifyResponse.valid) {
+				event.locals.user = {
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore
+					email: decode(token)?.email ?? ''
+				};
+			} else {
+				event.cookies.delete('session_id', { path: '/' });
+				throw redirect(303, '/login');
+			}
 		}
 	}
 

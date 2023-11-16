@@ -38,6 +38,7 @@
 		"@types/jsonwebtoken": "^9.0.2",
 		"daisyui": "^3.5.1",
 		"file-selector": "^0.6.0",
+		"heic2any": "^0.0.4",
 		"jsonwebtoken": "^9.0.1"
 	}
 }
