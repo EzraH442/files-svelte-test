@@ -10,13 +10,13 @@ ENV authUrl=${authUrl}
 
 WORKDIR /app
 RUN npm install pm2 -g
+RUN npm install pnpm -g
 
-COPY ./package*.json ./
-RUN npm install
+COPY ./package* ./
+RUN pnpm install
 COPY ./ ./
 
-RUN 
-RUN npm run build
+RUN pnpm run build
 EXPOSE 3000
 
 CMD [ "pm2-runtime", "build/index.js" ]
